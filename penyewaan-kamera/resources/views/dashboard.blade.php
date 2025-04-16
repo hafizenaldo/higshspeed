@@ -104,7 +104,7 @@
                                         <svg class="bi text-primary" width="32" height="32" fill="blue"
                                             style="width:10px">
                                             <use
-                                                xlink:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
+                                                link:href="assets/static/images/bootstrap-icons.svg#circle-fill" />
                                         </svg>
                                         <h5 class="mb-0 ms-3">Europe</h5>
                                     </div>
@@ -210,8 +210,9 @@
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
+                            <img src="assets/compiled/jpg/1.jpg" alt="Face 1">
                         </div>
+
                         <div class="ms-3 name">
                             <h5 class="font-bold">John Duck</h5>
                             <h6 class="text-muted mb-0">@johnducky</h6>

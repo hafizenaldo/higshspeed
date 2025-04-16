@@ -6,9 +6,13 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
+// Route::get('/', function () {
+//     return redirect()->route('dashboard');
 Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
+        return view('home');
+    })->name('home');
+
+// });
 
 // ✅ Group route untuk bagian admin
 Route::prefix('admin')->group(function () {

@@ -68,13 +68,17 @@
                 <i class="bi bi-card-list"></i>
                 <span>Kategori</span>
             </a>
-
-
-
-
         </li>
 
-        <li
+
+        <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+            <a href="{{ route('kategori.index') }}" class='sidebar-link'>
+                <i class="bi bi-calendar-event-fill"></i>
+                <span>Pemesanan</span>
+            </a>
+        </li>
+
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-grid-1x2-fill"></i>
@@ -111,11 +115,11 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li class="sidebar-title">Forms &amp; Tables</li>
+        {{-- <li class="sidebar-title">Forms &amp; Tables</li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-hexagon-fill"></i>
@@ -157,9 +161,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="form-layout.html" class='sidebar-link'>
                 <i class="bi bi-file-earmark-medical-fill"></i>
@@ -167,9 +171,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-journal-check"></i>
@@ -186,9 +190,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-pen-fill"></i>
@@ -220,9 +224,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="table.html" class='sidebar-link'>
                 <i class="bi bi-grid-1x2-fill"></i>
@@ -230,9 +234,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
@@ -254,11 +258,11 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li class="sidebar-title">Extra UI</li>
+        {{-- <li class="sidebar-title">Extra UI</li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-pentagon-fill"></i>
@@ -285,9 +289,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-egg-fill"></i>
@@ -314,9 +318,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-bar-chart-fill"></i>
@@ -338,9 +342,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="ui-file-uploader.html" class='sidebar-link'>
                 <i class="bi bi-cloud-arrow-up-fill"></i>
@@ -348,9 +352,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-map-fill"></i>
@@ -372,9 +376,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-three-dots"></i>
@@ -420,11 +424,11 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li class="sidebar-title">Pages</li>
+        {{-- <li class="sidebar-title">Pages</li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="application-email.html" class='sidebar-link'>
                 <i class="bi bi-envelope-fill"></i>
@@ -432,9 +436,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="application-chat.html" class='sidebar-link'>
                 <i class="bi bi-chat-dots-fill"></i>
@@ -442,8 +446,8 @@
             </a>
 
 
-        </li>
-
+        </li> --}}
+{{--
         <li
             class="sidebar-item  ">
             <a href="application-gallery.html" class='sidebar-link'>
@@ -452,9 +456,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="application-checkout.html" class='sidebar-link'>
                 <i class="bi bi-basket-fill"></i>
@@ -462,9 +466,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
@@ -491,9 +495,9 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-x-octagon-fill"></i>
@@ -520,11 +524,11 @@
             </ul>
 
 
-        </li>
+        </li> --}}
 
-        <li class="sidebar-title">Raise Support</li>
+        {{-- <li class="sidebar-title">Raise Support</li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
                 <i class="bi bi-life-preserver"></i>
@@ -532,9 +536,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
                 <i class="bi bi-puzzle"></i>
@@ -542,9 +546,9 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="https://github.com/zuramai/mazer#donation" class='sidebar-link'>
                 <i class="bi bi-cash"></i>
@@ -552,7 +556,7 @@
             </a>
 
 
-        </li>
+        </li> --}}
 
     </ul>
 </div>
