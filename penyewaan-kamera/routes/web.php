@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -13,6 +14,14 @@ Route::get('/', function () {
     })->name('home');
 
 // });
+    // ✅ Halaman about
+    Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+    // ✅ Halaman home
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+    // Contact
+    Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+    Route::post('/contact/submit', [HomeController::class, 'submitContact'])->name('contact.submit');
+
 
 // ✅ Group route untuk bagian admin
 Route::prefix('admin')->group(function () {
@@ -25,4 +34,11 @@ Route::prefix('admin')->group(function () {
 
     // ✅ CRUD Kategori (lengkap)
     Route::resource('kategori', KategoriController::class);
+
+
+
+
+
+
+
 });

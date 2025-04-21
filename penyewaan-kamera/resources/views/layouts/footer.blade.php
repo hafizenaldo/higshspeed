@@ -71,16 +71,14 @@
                     GET IN TOUCH
                 </h4>
 
-                <p class="stext-107 cl7 size-201">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-                </p>
+                <p class="stext-107 cl7 size-201">Jl. Teuku Umar No.21, Alai Parak Kopi, Kec. Padang Utara, Kota Padang, Sumatera Barat 25171 or call us on +62 813 7856 8844
 
                 <div class="p-t-27">
                     <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-facebook"></i>
                     </a>
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                    <a href="https://www.instagram.com/highspeedpdg/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-instagram"></i>
                     </a>
 
