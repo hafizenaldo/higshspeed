@@ -25,7 +25,7 @@
                         </li>
 
                         <li>
-                            <a href="blog.html">How To Rent</a>
+                            <a href="{{ route('carasewa') }}">How To Rent</a>
                         </li>
 
                         <li>

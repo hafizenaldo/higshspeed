@@ -22,6 +22,9 @@ Route::get('/', function () {
     Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
     Route::post('/contact/submit', [HomeController::class, 'submitContact'])->name('contact.submit');
 
+    Route::get('/cara-sewa', [App\Http\Controllers\HomeController::class, 'carasewa'])->name('carasewa');
+
+
 
 // ✅ Group route untuk bagian admin
 Route::prefix('admin')->group(function () {

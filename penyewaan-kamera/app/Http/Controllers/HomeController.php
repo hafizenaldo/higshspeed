@@ -34,4 +34,9 @@ class HomeController extends Controller
 
     return redirect()->back()->with('success', 'Your message has been sent!');
     }
+
+    public function carasewa()
+    {
+        return view('carasewa'); // Menampilkan halaman cara sewa
+    }
 }
