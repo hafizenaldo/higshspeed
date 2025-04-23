@@ -6,7 +6,8 @@
 
                 <!-- Logo desktop -->
                 <a href="#" class="logo">
-                    <img src="assets/compiled/svg/hs.png" alt="IMG-LOGO" width="600%" height="300%">
+                    <img src="{{ asset('assets/compiled/svg/hs.png') }}" alt="IMG-LOGO" class="img-fluid" style="max-width: 100px;">
+
 
                 </a>
 
@@ -21,8 +22,10 @@
                         </li>
 
                         <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Equipment</a>
+                            <a href="{{ url('/produk') }}">Equipment</a>
+
                         </li>
+
 
                         <li>
                             <a href="{{ route('carasewa') }}">How To Rent</a>

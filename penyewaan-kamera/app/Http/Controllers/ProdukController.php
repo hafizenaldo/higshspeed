@@ -35,6 +35,13 @@ class ProdukController extends Controller
          return view('admin.produk.index', compact('produks'));
      }
 
+        //menampilkan detail produk
+         public function show($id)
+    {
+        $produk = Produk::findOrFail($id);
+        return view('produkdetail', compact('produk'));
+    }
+
 
     /**
      * Form tambah produk

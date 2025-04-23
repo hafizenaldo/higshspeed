@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ViewprodukController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -23,6 +24,14 @@ Route::get('/', function () {
     Route::post('/contact/submit', [HomeController::class, 'submitContact'])->name('contact.submit');
 
     Route::get('/cara-sewa', [App\Http\Controllers\HomeController::class, 'carasewa'])->name('carasewa');
+
+    // untuk menampilkan produk di halaman produk dan filter kategori
+    Route::get('/produk', [ViewprodukController::class, 'index'])->name('produk');
+    Route::get('/produk/kategori/{kategori}', [ViewprodukController::class, 'byKategori'])->name('produk.kategori');
+
+    //untuk menampilkan detial produk 
+    Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.detail');
+
 
 
 

@@ -170,19 +170,19 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item p-b-10">
-						<a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best Seller</a>
+						<a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Kamera</a>
 					</li>
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#featured" role="tab">Featured</a>
+						<a class="nav-link" data-toggle="tab" href="#featured" role="tab">Lensa</a>
 					</li>
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#sale" role="tab">Sale</a>
+						<a class="nav-link" data-toggle="tab" href="#sale" role="tab">Stabilizer</a>
 					</li>
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#top-rate" role="tab">Top Rate</a>
+						<a class="nav-link" data-toggle="tab" href="#top-rate" role="tab">Lighting</a>
 					</li>
 				</ul>
 
