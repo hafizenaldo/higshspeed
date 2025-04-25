@@ -56,39 +56,41 @@
                         Rp {{ number_format($produk->harga, 0, ',', '.') }}
                     </span>
 
+
                     <p class="stext-102 cl3 p-t-23">
-                        {{ $produk->deskripsi }}
+                     Deskripsi : {{ $produk->deskripsi }}
                     </p>
 
-                    <div class="p-t-33">
+                    <div class="p-t-23">
                         <!-- Stok -->
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">Stok</div>
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="size">
-                                        <option>Pilih ukuran</option>
-                                        <option>Size S</option>
-                                        <option>Size M</option>
-                                        <option>Size L</option>
-                                        <option>Size XL</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <p class="stext-102 cl3 p-t-23">
+                        Stok : {{ $produk->stok }}
+                    </p>
 
+                        <!-- Quantity & Dates -->
+<div class="flex-w flex-r-m p-b-10">
 
+    <!-- Tanggal Mulai -->
+    <div class="m-b-10 w-full">
+        <label for="tanggal_mulai" class="stext-102 cl3">Tanggal Pengambilan:</label>
+        <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" required>
+    </div>
 
-                        <!-- Quantity -->
-                        <div class="flex-w flex-r-m p-b-10">
+    <!-- Tanggal Selesai -->
+    <div class="m-b-10 w-full">
+        <label for="tanggal_selesai" class="stext-102 cl3">Tanggal Pengembalian:</label>
+        <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" required>
+    </div>
+
+                            <!-- Quantity -->
                             <div class="size-204 flex-w flex-m respon6-next">
                                 <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                     <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="jumlah" value="1" min="1" max="{{ $produk->stok }}">
+
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-plus"></i>
@@ -99,6 +101,8 @@
                                     Add to cart
                                 </button>
                             </div>
+                        </div>
+
                         </div>
                     </div>
 
