@@ -70,7 +70,7 @@
                         <!-- Quantity & Dates -->
 <div class="flex-w flex-r-m p-b-10">
 
-    <!-- Tanggal Mulai -->
+    {{-- <!-- Tanggal Mulai -->
     <div class="m-b-10 w-full">
         <label for="tanggal_mulai" class="stext-102 cl3">Tanggal Pengambilan:</label>
         <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" required>
@@ -80,7 +80,7 @@
     <div class="m-b-10 w-full">
         <label for="tanggal_selesai" class="stext-102 cl3">Tanggal Pengembalian:</label>
         <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" required>
-    </div>
+    </div> --}}
 
                             <!-- Quantity -->
                             <div class="size-204 flex-w flex-m respon6-next">
@@ -89,18 +89,76 @@
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="jumlah" value="1" min="1" max="{{ $produk->stok }}">
-
+                                    <input id="jumlah" class="mtext-104 cl3 txt-center num-product"
+                                           type="number" name="jumlah" value="1" min="1" max="{{ $produk->stok }}">
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
                                 </div>
 
-                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Add to cart
-                                </button>
+                                <form action="{{ route('cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+                                    <input type="hidden" id="inputJumlah" name="jumlah" value="1">
+
+                                    <div class="size-204 flex-w flex-m respon6-next">
+
+                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                            Add to cart
+                                        </button>
+                                    </div>
+                                </form>
+
                             </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const minusButton = document.querySelector('.btn-num-product-down');
+                                    const plusButton = document.querySelector('.btn-num-product-up');
+                                    const inputJumlah = document.getElementById('jumlah');
+                                    const maxStok = parseInt(inputJumlah.getAttribute('max'));
+
+                                    function validateInput() {
+                                        let currentValue = parseInt(inputJumlah.value);
+
+                                        if (isNaN(currentValue) || currentValue < 1) {
+                                            inputJumlah.value = 1;
+                                        } else if (currentValue > maxStok) {
+                                            inputJumlah.value = maxStok;
+                                        }
+                                    }
+
+                                    minusButton.addEventListener('click', function() {
+                                        validateInput();
+                                        let currentValue = parseInt(inputJumlah.value);
+                                        if (currentValue > 1) {
+                                            inputJumlah.value = currentValue - 1;
+                                        }
+                                    });
+
+                                    plusButton.addEventListener('click', function() {
+                                        validateInput();
+                                        let currentValue = parseInt(inputJumlah.value);
+                                        if (currentValue < maxStok) {
+                                            inputJumlah.value = currentValue + 1;
+                                        }
+                                    });
+
+                                    // Cek saat user mengetik
+                                    inputJumlah.addEventListener('input', function() {
+                                        validateInput();
+                                    });
+
+                                    // Cek juga saat user selesai mengetik (blur dari input)
+                                    inputJumlah.addEventListener('blur', function() {
+                                        validateInput();
+                                    });
+                                });
+                            </script>
+
+
+
                         </div>
 
                         </div>

@@ -9,7 +9,7 @@ use App\Http\Controllers\ViewprodukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\CartController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -52,6 +52,11 @@ use App\Http\Controllers\ProfileController;
         Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     });
+
+
+    //// CART ROUTES
+
+
 
 
 

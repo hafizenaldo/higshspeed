@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- Ganti jika layout kamu berbeda --}}
+@extends('layouts.app') {{-- Ganti kalau layout kamu beda --}}
 
 @section('content')
 
@@ -18,29 +18,28 @@
             {{-- ✅ LOOP DATA PRODUK DI CART --}}
             <ul class="header-cart-wrapitem w-full">
                 @foreach ($cartItems as $item)
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="{{ asset('storage/' . $item->produk->foto) }}" alt="IMG">
-                    </div>
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            {{ $item->produk->nama_produk }}
-                        </a>
-                        <span class="header-cart-item-info">
-                            {{ $item->jumlah }} x Rp{{ number_format($item->produk->harga, 0, ',', '.') }}
-                        </span>
-                    </div>
-                </li>
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-img">
+                            <img src="{{ asset('storage/' . $item->produk->foto) }}" alt="IMG">
+                        </div>
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                {{ $item->produk->nama_produk }}
+                            </a>
+                            <span class="header-cart-item-info">
+                                {{ $item->jumlah_item }} x Rp{{ number_format($item->harga, 0, ',', '.') }}
+                            </span>
+                        </div>
+                    </li>
                 @endforeach
             </ul>
 
             {{-- ✅ TOTAL DI CART --}}
             <div class="w-full">
                 @php
-                    $totalHeader = 0;
-                    foreach ($cartItems as $item) {
-                        $totalHeader += $item->produk->harga * $item->jumlah;
-                    }
+                    $totalHeader = $cartItems->sum(function($item) {
+                        return $item->harga * $item->jumlah_item;
+                    });
                 @endphp
 
                 <div class="header-cart-total w-full p-tb-40">
@@ -79,38 +78,38 @@
                             {{-- ✅ LOOP ISI CART --}}
                             @php $total = 0; @endphp
                             @foreach ($cartItems as $item)
-                            @php
-                                $subTotal = $item->produk->harga * $item->jumlah;
-                                $total += $subTotal;
-                            @endphp
-                            <tr class="table_row">
-                                <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="{{ asset('storage/' . $item->produk->foto) }}" alt="IMG">
-                                    </div>
-                                </td>
-                                <td class="column-2">{{ $item->produk->nama_produk }}</td>
-                                <td class="column-3">Rp{{ number_format($item->produk->harga, 0, ',', '.') }}</td>
-                                <td class="column-4">
-                                    {{-- ✅ FORM UPDATE JUMLAH PRODUK --}}
-                                    <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                            <button name="action" value="decrease" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" type="submit">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </button>
-
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="jumlah" value="{{ $item->jumlah }}">
-
-                                            <button name="action" value="increase" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" type="submit">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                            </button>
+                                @php
+                                    $subTotal = $item->harga * $item->jumlah_item;
+                                    $total += $subTotal;
+                                @endphp
+                                <tr class="table_row">
+                                    <td class="column-1">
+                                        <div class="how-itemcart1">
+                                            <img src="{{ asset('storage/' . $item->produk->foto) }}" alt="IMG">
                                         </div>
-                                    </form>
-                                </td>
-                                <td class="column-5">Rp{{ number_format($subTotal, 0, ',', '.') }}</td>
-                            </tr>
+                                    </td>
+                                    <td class="column-2">{{ $item->produk->nama_produk }}</td>
+                                    <td class="column-3">Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                    <td class="column-4">
+                                        {{-- ✅ FORM UPDATE JUMLAH PRODUK --}}
+                                        <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                                <button name="action" value="decrease" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" type="submit">
+                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                </button>
+
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="jumlah_item" value="{{ $item->jumlah_item }}" min="1">
+
+                                                <button name="action" value="increase" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" type="submit">
+                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="column-5">Rp{{ number_format($subTotal, 0, ',', '.') }}</td>
+                                </tr>
                             @endforeach
                         </table>
                     </div>
@@ -140,4 +139,5 @@
         </div>
     </div>
 </form>
+
 @endsection
