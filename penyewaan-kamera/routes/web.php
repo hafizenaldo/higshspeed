@@ -8,13 +8,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ViewprodukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
+
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
 //     return redirect()->route('dashboard');
-Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // });
     // ✅ Halaman about
@@ -36,13 +36,22 @@ Route::get('/', function () {
     Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.detail');
 
     // Login
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::get('/login2', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login2', [LoginController::class, 'login']);
+    Route::post('/logout2', [LoginController::class, 'logout'])->name('logout');
 
 
-    // Register
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [RegisterController::class, 'register']);
+    // Route untuk menampilkan form register
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.show');
+    // Route untuk submit form register
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.perform');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
 
 
 

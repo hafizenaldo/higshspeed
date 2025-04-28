@@ -2,23 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-
-    /**
-     * Menampilkan halaman login.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Tampilkan halaman login
     public function showLoginForm()
     {
-        return view('login'); // Ganti dengan view login kamu
+        return view('login'); // Pastikan ini nama file view login kamu
     }
 
+    // Proses login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -26,23 +21,25 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials, $request->remember)) {
+        if (Auth::attempt($credentials)) {
+            // Jika login berhasil
             $request->session()->regenerate();
-
-            return redirect()->intended('/dashboard'); // Ganti sesuai halaman tujuan setelah login
+            return redirect()->intended('/home'); // <-- Ganti ke halaman Home
         }
 
+        // Jika login gagal
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'email' => 'Email atau password salah!',
         ])->onlyInput('email');
     }
 
+   // Proses logout
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/login');
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/home'); // <-- sekarang redirect ke halaman home
     }
+
 }

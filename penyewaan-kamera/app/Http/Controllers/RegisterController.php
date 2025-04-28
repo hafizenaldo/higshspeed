@@ -8,34 +8,33 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-
 class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('register'); // pastikan file ini ada
+        return view('register'); // Pastikan view 'register.blade.php' ada di resources/views/
     }
 
     public function register(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'no_hp' => 'required|string|unique:users,no_hp',
-            'password' => 'required|string|min:8|confirmed',
+            'nohp' => 'required|string|unique:users,nohp',
+            'password' => 'required|string|min:8',
+            'confirm_password' => 'required|same:password',
         ]);
 
         $user = User::create([
-            'nama' => $request->nama,
+            'name' => $request->name,
             'email' => $request->email,
-            'no_hp' => $request->no_hp,
+            'nohp' => $request->nohp,
             'password' => Hash::make($request->password),
         ]);
 
-        // Optional: login langsung setelah register
+        // Optional: langsung login setelah register
         Auth::login($user);
 
-
-        return redirect()->route('home'); // ganti sesuai route tujuan
+        return redirect()->route('home'); // Ganti 'home' sesuai route kamu
     }
 }
