@@ -54,10 +54,6 @@ use App\Http\Controllers\CartController;
     });
 
 
-    //// CART ROUTES
-
-
-
 
 
 
@@ -69,11 +65,4 @@ use App\Http\Controllers\CartController;
     Route::resource('produk', ProdukController::class);
     // ✅ CRUD Kategori (lengkap)
     Route::resource('kategori', KategoriController::class);
-
-
-
-
-
-
-
 });

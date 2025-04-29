@@ -210,15 +210,19 @@
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="assets/compiled/jpg/1.jpg" alt="Face 1">
+                            <!-- Gambar avatar pengguna yang sedang login -->
+                            <img src="{{ asset('assets/compiled/svg/avataradmin.jpg') }}" alt="Avatar">
                         </div>
 
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <!-- Nama pengguna yang sedang login -->
+                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <!-- Username atau email pengguna -->
+                            <h6 class="text-muted mb-0">{{ '@' . strtolower(Auth::user()->name) }}</h6>
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="card">
                 <div class="card-header">

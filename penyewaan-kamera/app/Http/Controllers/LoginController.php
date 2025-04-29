@@ -22,9 +22,17 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // Jika login berhasil
             $request->session()->regenerate();
-            return redirect()->intended('/home'); // <-- Ganti ke halaman Home
+
+            // Ambil user yang sedang login
+            $user = Auth::user();
+
+            // Cek role dan redirect sesuai role
+            if ($user->role === 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            }
+
+            return redirect()->intended('/home'); // pengguna biasa
         }
 
         // Jika login gagal
@@ -33,13 +41,12 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
-   // Proses logout
+    // Proses logout
     public function logout(Request $request)
     {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/home'); // <-- sekarang redirect ke halaman home
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/home');
     }
-
 }
