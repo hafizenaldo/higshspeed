@@ -53,6 +53,12 @@ use App\Http\Controllers\CartController;
         Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     });
 
+    //CART
+
+    // Rute untuk menambahkan produk ke keranjang
+    Route::post('/cart/tambah', [CartController::class, 'tambahKeKeranjang'])->name('cart.tambah');
+    // Rute untuk menampilkan isi keranjang
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 
 

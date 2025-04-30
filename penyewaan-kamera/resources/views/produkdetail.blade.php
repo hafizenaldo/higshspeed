@@ -68,96 +68,77 @@
                     </p>
 
                         <!-- Quantity & Dates -->
-<div class="flex-w flex-r-m p-b-10">
+                        <div class="flex-w flex-r-m p-b-10">
 
-    {{-- <!-- Tanggal Mulai -->
-    <div class="m-b-10 w-full">
-        <label for="tanggal_mulai" class="stext-102 cl3">Tanggal Pengambilan:</label>
-        <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" required>
-    </div>
-
-    <!-- Tanggal Selesai -->
-    <div class="m-b-10 w-full">
-        <label for="tanggal_selesai" class="stext-102 cl3">Tanggal Pengembalian:</label>
-        <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" required>
-    </div> --}}
-
-                            <!-- Quantity -->
-                            <div class="size-204 flex-w flex-m respon6-next">
-                                <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                        <i class="fs-16 zmdi zmdi-minus"></i>
-                                    </div>
-
-                                    <input id="jumlah" class="mtext-104 cl3 txt-center num-product"
-                                           type="number" name="jumlah" value="1" min="1" max="{{ $produk->stok }}">
-
-                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                        <i class="fs-16 zmdi zmdi-plus"></i>
-                                    </div>
-                                </div>
-
-                                {{-- <form action="{{ route('cart.store') }}" method="POST">
+                            <div class="w-full max-w-xl p-6 bg-white rounded-2xl shadow-lg">
+                                <form action="{{ route('cart.tambah') }}" method="POST" class="space-y-4">
                                     @csrf
-                                    <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                                    <input type="hidden" id="inputJumlah" name="jumlah" value="1">
+                                    <input type="hidden" name="produks_id" value="{{ $produk->id }}">
+                                    <input type="hidden" id="harga_per_hari" value="{{ $produk->harga }}">
 
-                                    <div class="size-204 flex-w flex-m respon6-next">
-
-                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                            Add to cart
-                                        </button>
+                                    <!-- Jumlah Item -->
+                                    <div>
+                                        <label for="jumlah_item" class="block text-sm font-semibold text-gray-700">Jumlah Item</label>
+                                        <input type="number" name="jumlah_item" id="jumlah_item" min="1" required value="1"
+                                            class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            oninput="hitungHarga()">
                                     </div>
-                                </form> --}}
 
+                                    <!-- Tanggal Pengambilan -->
+                                    <div>
+                                        <label for="waktu_pengambilan" class="block text-sm font-semibold text-gray-700">Tanggal & Waktu Pengambilan</label>
+                                        <input type="datetime-local" name="waktu_pengambilan" id="waktu_pengambilan" required
+                                            class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            onchange="hitungHarga()">
+                                    </div>
+
+                                    <!-- Tanggal Pengembalian -->
+                                    <div>
+                                        <label for="tanggal_pengembalian" class="block text-sm font-semibold text-gray-700">Tanggal Pengembalian</label>
+                                        <input type="date" name="tanggal_pengembalian" id="tanggal_pengembalian" required
+                                            class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            onchange="hitungHarga()">
+                                    </div>
+
+                                    <!-- Total Harga -->
+                                    <div>
+                                        <label for="total_harga" class="block text-sm font-semibold text-gray-700">Total Harga</label>
+                                        <input type="text" id="total_harga" readonly
+                                            class="w-full px-4 py-2 mt-1 bg-gray-100 border rounded-lg cursor-not-allowed">
+                                    </div>
+
+                                    <!-- Tombol Submit -->
+                                    <div class="text-right">
+                                        <button type="submit"
+                                            class="px-6 py-2 text-black bg-black rounded-lg hover:bg-gray-800 transition duration-200">
+                                            Tambah ke Keranjang
+                                        </button>
+
+                                    </div>
+                                </form>
                             </div>
 
                             <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const minusButton = document.querySelector('.btn-num-product-down');
-                                    const plusButton = document.querySelector('.btn-num-product-up');
-                                    const inputJumlah = document.getElementById('jumlah');
-                                    const maxStok = parseInt(inputJumlah.getAttribute('max'));
+                                function hitungHarga() {
+                                    const hargaPerHari = parseFloat(document.getElementById('harga_per_hari').value);
+                                    const jumlahItem = parseInt(document.getElementById('jumlah_item').value);
+                                    const waktuPengambilan = new Date(document.getElementById('waktu_pengambilan').value);
+                                    const tanggalPengembalian = new Date(document.getElementById('tanggal_pengembalian').value);
 
-                                    function validateInput() {
-                                        let currentValue = parseInt(inputJumlah.value);
+                                    tanggalPengembalian.setHours(waktuPengambilan.getHours());
+                                    tanggalPengembalian.setMinutes(waktuPengambilan.getMinutes());
+                                    tanggalPengembalian.setSeconds(waktuPengambilan.getSeconds());
 
-                                        if (isNaN(currentValue) || currentValue < 1) {
-                                            inputJumlah.value = 1;
-                                        } else if (currentValue > maxStok) {
-                                            inputJumlah.value = maxStok;
-                                        }
-                                    }
+                                    const timeDiff = tanggalPengembalian - waktuPengambilan;
+                                    const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                    const durasiSewa = dayDiff > 0 ? dayDiff : 1;
 
-                                    minusButton.addEventListener('click', function() {
-                                        validateInput();
-                                        let currentValue = parseInt(inputJumlah.value);
-                                        if (currentValue > 1) {
-                                            inputJumlah.value = currentValue - 1;
-                                        }
-                                    });
+                                    const totalHarga = hargaPerHari * jumlahItem * durasiSewa;
+                                    document.getElementById('total_harga').value = "Rp " + totalHarga.toLocaleString();
+                                }
 
-                                    plusButton.addEventListener('click', function() {
-                                        validateInput();
-                                        let currentValue = parseInt(inputJumlah.value);
-                                        if (currentValue < maxStok) {
-                                            inputJumlah.value = currentValue + 1;
-                                        }
-                                    });
-
-                                    // Cek saat user mengetik
-                                    inputJumlah.addEventListener('input', function() {
-                                        validateInput();
-                                    });
-
-                                    // Cek juga saat user selesai mengetik (blur dari input)
-                                    inputJumlah.addEventListener('blur', function() {
-                                        validateInput();
-                                    });
-                                });
+                                hitungHarga();
                             </script>
-
-
 
                         </div>
 
@@ -165,7 +146,7 @@
                     </div>
 
                     <!-- Share & Wishlist -->
-                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                    {{-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                         <div class="flex-m bor9 p-r-10 m-r-11">
                             <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
                                 <i class="zmdi zmdi-favorite"></i>
@@ -180,7 +161,7 @@
                         <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
                             <i class="fa fa-google-plus"></i>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
