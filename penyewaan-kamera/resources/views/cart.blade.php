@@ -1,6 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+    .table-shopping-cart th,
+    .table-shopping-cart td {
+        padding: 15px 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .table-shopping-cart th {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .how-itemcart1 img {
+        max-width: 80px;
+        height: auto;
+    }
+</style>
+
 <form class="bg0 p-t-75 p-b-85">
     <div class="container">
         <h2 class="mb-4">Keranjang Penyewaan</h2>
@@ -21,14 +41,21 @@
                     <div class="wrap-table-shopping-cart">
                         <table class="table-shopping-cart">
                             <tr class="table_head">
-                                <th class="column-1">Product</th>
-                                <th class="column-2">Name</th>
-                                <th class="column-3">Price</th>
-                                <th class="column-4">Quantity</th>
-                                <th class="column-5">Total</th>
+                                <th class="column-1">gambar</th>
+                                <th class="column-2">Nama Produk</th>
+                                <th class="column-3">Harga</th>
+                                <th class="column-4">Jumlah </th>
+                                <th class="column-5">Waktu Sewa</th>
+                                <th class="column-6">Total</th>
                             </tr>
 
                             @foreach($keranjang as $item)
+                            @php
+                                $waktuAmbil = \Carbon\Carbon::parse($item->waktu_pengambilan);
+                                $waktuKembali = \Carbon\Carbon::parse($item->waktu_pengembalian);
+                                $jumlahHari = $waktuAmbil->diffInDays($waktuKembali);
+                                if ($jumlahHari === 0) $jumlahHari = 1;
+                            @endphp
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div class="how-itemcart1">
@@ -38,13 +65,23 @@
                                 <td class="column-2">
                                     {{ $item->produk->nama_produk }}<br>
                                     <small>
-                                        Ambil: {{ \Carbon\Carbon::parse($item->waktu_pengambilan)->format('d-m-Y H:i') }} <br>
-                                        Kembali: {{ \Carbon\Carbon::parse($item->waktu_pengembalian)->format('d-m-Y H:i') }}
+                                        Ambil: {{ $waktuAmbil->format('d-m-Y H:i') }} <br>
+                                        Kembali: {{ $waktuKembali->format('d-m-Y H:i') }}
                                     </small>
+
+                                    <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST" style="margin-top: 5px;">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus item ini?')">
+                                            Hapus
+                                        </button>
+                                    </form>
                                 </td>
-                                <td class="column-3">Rp {{ number_format($item->produk->harga, 0, ',', '.') }}</td>
+                                <td class="column-3"><span style="white-space: nowrap;">Rp {{ number_format($item->produk->harga, 0, ',', '.') }}</span></td>
                                 <td class="column-4">{{ $item->jumlah_item }}</td>
-                                <td class="column-5">Rp {{ number_format($item->sub_total, 0, ',', '.') }}</td>
+                                <td class="column-5">{{ $jumlahHari }} hari</td>
+                                <td class="column-6">Rp {{ number_format($item->sub_total, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
                         </table>
@@ -91,12 +128,11 @@
                         </div>
 
                     </div>
+                    <a href="{{ route('checkout.index') }}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                        Checkout
+                    </a>
 
-                    {{-- <a href="{{ route('checkout.index') }}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                        Lanjutkan ke Pembayaran
-                    </a> --}}
                 </div>
-
             </div>
         </div>
 

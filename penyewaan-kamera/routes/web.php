@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -59,6 +60,14 @@ use App\Http\Controllers\CartController;
     Route::post('/cart/tambah', [CartController::class, 'tambahKeKeranjang'])->name('cart.tambah');
     // Rute untuk menampilkan isi keranjang
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::delete('/keranjang/{id}', [CartController::class, 'destroy'])->name('keranjang.destroy');
+    // 👉 TAMBAHAN route hapus keranjang
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+
+
 
 
 

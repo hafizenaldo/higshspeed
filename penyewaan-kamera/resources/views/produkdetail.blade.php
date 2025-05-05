@@ -79,10 +79,12 @@
                                     <!-- Jumlah Item -->
                                     <div>
                                         <label for="jumlah_item" class="block text-sm font-semibold text-gray-700">Jumlah Item</label>
-                                        <input type="number" name="jumlah_item" id="jumlah_item" min="1" required value="1"
+                                        <input type="number" name="jumlah_item" id="jumlah_item" min="1" max="{{ $produk->stok }}" required value="1"
                                             class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                             oninput="hitungHarga()">
+                                        <small class="text-gray-500">Stok tersedia: {{ $produk->stok }}</small>
                                     </div>
+
 
                                     <!-- Tanggal Pengambilan -->
                                     <div>
@@ -108,13 +110,11 @@
                                     </div>
 
                                     <!-- Tombol Submit -->
-                                    <div class="text-right">
+
                                         <button type="submit"
                                             class="px-6 py-2 text-black bg-black rounded-lg hover:bg-gray-800 transition duration-200">
                                             Tambah ke Keranjang
                                         </button>
-
-                                    </div>
                                 </form>
                             </div>
 
