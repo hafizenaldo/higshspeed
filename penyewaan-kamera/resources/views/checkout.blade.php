@@ -149,31 +149,7 @@
         <h2 class="checkout-header">Detail Checkout</h2>
         <div class="checkout-main">
 
-            {{-- User Info --}}
-            <div class="user-details">
-                <h4 class="mb-4">Data Pelanggan</h4>
-                <form action="{{ route('checkout.store') }}" method="POST">
-                    @csrf
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="name" required value="{{ auth()->user()->name ?? '' }}">
-                        </div>
 
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" required value="{{ auth()->user()->email ?? '' }}">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone" class="form-label">Nomor HP</label>
-                            <input type="text" class="form-control" name="phone" required value="{{ auth()->user()->nohp ?? '' }}">
-                        </div>
-                    </div>
-                </form>
-            </div>
 
             {{-- Product Info --}}
             <div class="product-details">
@@ -230,9 +206,13 @@
                     </div>
                     <div class="checkout-btn-container">
 
-                        <a href="{{ route('checkout.store') }}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                            Lanjutkan Pembayaran
-                        </a>
+                        <form action="{{ route('checkout.store') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                Lanjutkan Pembayaran
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>
