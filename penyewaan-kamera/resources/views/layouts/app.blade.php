@@ -60,6 +60,7 @@
     <script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
+    @yield('script')
 </body>
 </html>
 

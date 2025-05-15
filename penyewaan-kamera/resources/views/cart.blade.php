@@ -21,9 +21,10 @@
     }
 </style>
 
-<form class="bg0 p-t-75 p-b-85">
-    <div class="container">
-        <h2 class="mb-4">Keranjang Penyewaan</h2>
+<div class="bg0 p-t-75 p-b-85">
+
+    <div class="container" style="margin-top: 100px;">
+        <h2 class="text-center mb-5">Keranjang Anda</h2>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -69,14 +70,12 @@
                                         Kembali: {{ $waktuKembali->format('d-m-Y H:i') }}
                                     </small>
 
-                                    <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST" style="margin-top: 5px;">
+                                    <form action="{{ route('keranjang.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus item ini?')">
-                                            Hapus
-                                        </button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                     </form>
+
                                 </td>
                                 <td class="column-3"><span style="white-space: nowrap;">Rp {{ number_format($item->produk->harga, 0, ',', '.') }}</span></td>
                                 <td class="column-4">{{ $item->jumlah_item }}</td>
@@ -131,6 +130,12 @@
                     <a href="{{ route('checkout.index') }}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                         Checkout
                     </a>
+                     {{-- <form action="{{ route('checkout.store') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                                checkout
+                            </button>
+                        </form> --}}
 
                 </div>
             </div>
@@ -144,5 +149,6 @@
         </div>
         @endif
     </div>
-</form>
+</div>
+
 @endsection

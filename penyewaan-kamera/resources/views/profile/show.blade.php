@@ -4,22 +4,20 @@
 <section id="profile" class="profile py-5" style="background-color: #f8f9fa; margin-top: 80px;">
 
     <div class="container">
-        <h2 class="text-uppercase text-center mb-5 font-weight-bold text-danger">Profil Anda</h2>
+        {{-- <h2 class="text-uppercase text-center mb-5 font-weight-bold text-danger">Profil Anda</h2> --}}
 
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded-lg overflow-hidden">
 
                 <div class="card-header text-center py-5"
-                    style="background: url('{{ asset('login/images/bg2.jpg') }}') center/cover no-repeat;">
-                   <div class="d-flex flex-column align-items-center">
-                       <div class="profile-img mb-3 position-relative">
-                           <img src="{{ asset('login/images/avatar.jpeg') }}" alt="Profile"
-                                class="rounded-circle border-4 border-white shadow"
-                                style="width: 130px; height: 130px; object-fit: cover;">
+                    style="background: url('{{ asset('login/images/hs.jpg') }}') center/contain no-repeat; height: 250px;">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="profile-img mb-3 position-relative">
+
                        </div>
-                       <h4 class="mb-0" style="color: white;">{{ $user->name }}</h4> <!-- Tetap putih -->
-                       {{-- <small class="text-light">{{ $user->email }}</small> <!-- Email tetap warna putih --> --}}
+                       {{-- <h4 class="mb-0" style="color: white;">{{ $user->name }}</h4> <!-- Tetap putih -->
+                       <small class="text-light">{{ $user->email }}</small> <!-- Email tetap warna putih --> --}}
                    </div>
                </div>
 

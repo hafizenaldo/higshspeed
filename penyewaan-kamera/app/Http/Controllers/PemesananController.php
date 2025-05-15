@@ -41,7 +41,7 @@ class PemesananController extends Controller
     // Tampilkan detail satu pemesanan
     public function show(Pemesanan $pemesanan)
     {
-        return view('pemesanan.show', compact('pemesanan'));
+        return view('checkout', compact('pemesanan'));
     }
 
     // Tampilkan form edit pemesanan

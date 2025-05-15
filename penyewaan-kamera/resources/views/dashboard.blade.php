@@ -216,11 +216,18 @@
 
                         <div class="ms-3 name">
                             <!-- Nama pengguna yang sedang login -->
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <h5 class="font-bold mb-0">{{ Auth::user()->name }}</h5>
                             <!-- Username atau email pengguna -->
-                            <h6 class="text-muted mb-0">{{ '@' . strtolower(Auth::user()->name) }}</h6>
+                            <h6 class="text-muted mb-2">{{ '@' . strtolower(Auth::user()->name) }}</h6>
+
+                            <!-- Tombol Logout -->
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                            </form>
                         </div>
                     </div>
+
                 </div>
 
             </div>

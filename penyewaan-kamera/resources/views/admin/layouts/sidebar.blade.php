@@ -71,12 +71,7 @@
         </li>
 
 
-        {{-- <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
-            <a href="{{ route('kategori.index') }}" class='sidebar-link'>
-                <i class="bi bi-calendar-event-fill"></i>
-                <span>Pemesanan</span>
-            </a>
-        </li> --}}
+
 
         {{-- <li
             class="sidebar-item  has-sub">

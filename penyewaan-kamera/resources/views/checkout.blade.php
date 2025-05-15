@@ -208,10 +208,11 @@
 
                         <form action="{{ route('checkout.store') }}" method="POST">
                             @csrf
-                            <button type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                            <button id="pay-button" type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                                 Lanjutkan Pembayaran
                             </button>
                         </form>
+
 
                     </div>
                 </div>
@@ -219,4 +220,25 @@
         </div>
     </div>
 </div>
+
 @endsection
+
+{{-- @section('scripts')
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+<script type="text/javascript">
+    document.getElementById('pay-button').onclick = function(){
+      snap.pay('{{ $snapToken }}', {
+        onSuccess: function(result){
+          window.location.href = "{{ route('pemesanan.riwayat') }}";
+        },
+        onPending: function(result){
+          window.location.href = "{{ route('pemesanan.riwayat') }}";
+        },
+        onError: function(result){
+          alert('Pembayaran gagal. Silakan coba lagi.');
+          window.location.href = "{{ route('pemesanan.riwayat') }}";
+        }
+      });
+    };
+</script>
+@endsection --}}

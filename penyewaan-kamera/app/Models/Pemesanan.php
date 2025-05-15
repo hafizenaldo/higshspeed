@@ -28,4 +28,10 @@ class Pemesanan extends Model
         return $this->hasMany(DetailPemesanan::class, 'pemesanans_id');
     }
 
+    public function detailpemesanans()
+    {
+        return $this->hasMany(DetailPemesanan::class, 'pemesanans_id');
+    }
+
+
 }

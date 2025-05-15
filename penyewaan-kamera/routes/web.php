@@ -11,6 +11,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PemesananController;
+
 
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
@@ -65,11 +67,11 @@ use App\Http\Controllers\CheckoutController;
     // 👉 TAMBAHAN route hapus keranjang
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-
-
-
-
+    Route::get('/detail-pemesanan/{id}', [PemesananController::class, 'show'])->name('pembayaran.show');
+    Route::post('/checkout/update-status', [CheckoutController::class, 'updateStatus'])->name('checkout.updateStatus');
+    Route::get('/riwayat-pemesanan', [CheckoutController::class, 'riwayat'])->name('pemesanan.riwayat');
 
 
 

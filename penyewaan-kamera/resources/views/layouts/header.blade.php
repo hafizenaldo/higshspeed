@@ -36,36 +36,46 @@
                 </div>
 
                 <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m h-full">
-                    <div class="flex-c-m h-full p-r-24">
-                    </div>
-
-                    <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                        <a href="{{ route('cart.index') }}">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="2">
-                                <i class="zmdi zmdi-shopping-cart"></i>
+                <!-- Icon header -->
+                        <div class="wrap-icon-header flex-w flex-r-m h-full">
+                            <div class="flex-c-m h-full p-r-24">
                             </div>
-                        </a>
 
-                    </div>
-
-                    <div class="flex-c-m h-full p-lr-19">
-                        @auth
-                            <!-- Kalau sudah login: tampilkan avatar -->
-                            <div class="flex items-center">
-                                <a href="{{ route('profile.show') }}">
-                                    <img src="{{ asset('login/images/avatar.jpeg') }}" alt="Profile" class="rounded-full" width="40" height="40" style="object-fit: cover;">
+                            <!-- Ikon Riwayat Pemesanan -->
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <a href="{{ route('pemesanan.riwayat') }}">
+                                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+                                        <img src="{{ asset('images/icons/history.png') }}" alt="History" style="width: 24px; height: 24px;">
+                                    </div>
                                 </a>
                             </div>
-                        @else
-                            <!-- Kalau belum login: tampilkan icon profil -->
-                            <a href="{{ route('login') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
-                                <i class="zmdi zmdi-account"></i>
-                            </a>
-                        @endauth
-                    </div>
 
-                </div>
+
+                            <!-- Ikon Cart -->
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <a href="{{ route('cart.index') }}">
+                                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti" data-notify="2">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Avatar / Login -->
+                            <div class="flex-c-m h-full p-lr-19">
+                                @auth
+                                    <div class="flex items-center">
+                                        <a href="{{ route('profile.show') }}">
+                                            <img src="{{ asset('login/images/account.png') }}" alt="Profile" class="rounded-full" width="30" height="30" style="object-fit: cover;">
+                                        </a>
+                                    </div>
+                                @else
+                                    <a href="{{ route('login') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+                                        <i class="zmdi zmdi-account"></i>
+                                    </a>
+                                @endauth
+                            </div>
+                        </div>
+
             </nav>
         </div>
     </div>
