@@ -70,7 +70,8 @@ use App\Http\Controllers\PemesananController;
 
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/detail-pemesanan/{id}', [PemesananController::class, 'show'])->name('pembayaran.show');
-    Route::post('/checkout/update-status', [CheckoutController::class, 'updateStatus'])->name('checkout.updateStatus');
+
+
     Route::get('/riwayat-pemesanan', [CheckoutController::class, 'riwayat'])->name('pemesanan.riwayat');
 
 

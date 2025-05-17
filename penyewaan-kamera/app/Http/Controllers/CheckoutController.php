@@ -115,23 +115,6 @@ class CheckoutController extends Controller
         return view('checkout-success');
     }
 
-    // CheckoutController.php
-    public function updateStatus(Request $request)
-    {
-        $pemesanan = Pemesanan::where('id', $request->order_id)->first();
-        if ($pemesanan) {
-            $pemesanan->status_pembayaran = 'paid'; // mengubah status jadi paid
-            $pemesanan->save();
-
-            return response()->json(['message' => 'Status diperbarui']);
-        }
-
-        return response()->json(['message' => 'Pemesanan tidak ditemukan'], 404);
-    }
-
-
-
-
     // ✅ Tambahan: Tampilkan riwayat pemesanan user
     public function riwayat()
     {

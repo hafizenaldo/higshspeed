@@ -173,7 +173,9 @@
 @endsection
 
 @section('scripts')
+
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.pay-button').forEach(button => {
@@ -187,27 +189,11 @@
 
                 snap.pay(snapToken, {
                     onSuccess: function(result) {
-                        fetch('{{ route("checkout.updateStatus") }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({
-                                order_id: result.order_id,
-                                transaction_status: result.transaction_status
-                            })
-                        })
-                        .then(res => res.json())
-                        .then(() => {
-                            alert('Pembayaran berhasil!');
-                            window.location.reload();
-                        })
-                        .catch(() => {
-                            alert('Gagal update status pembayaran.');
-                        });
+                        alert('Pembayaran berhasil!');
+
+                        // Karena update status lewat webhook, kita reload saja halaman untuk refresh status
+                        window.location.reload();
                     },
-                    ,
                     onPending: function(result) {
                         alert('Pembayaran sedang diproses.');
                     },
@@ -218,8 +204,11 @@
                         alert('Anda menutup popup pembayaran.');
                     }
                 });
+
             });
         });
     });
 </script>
+
 @endsection
+

@@ -142,24 +142,8 @@
     document.getElementById('pay-button').onclick = function() {
         snap.pay('{{ $snapToken }}', {
             onSuccess: function(result) {
-                fetch('{{ route("checkout.updateStatus") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        order_id: result.order_id
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Pembayaran berhasil!');
-                    window.location.href = "{{ route('checkout.success') }}";
-                })
-                .catch(() => {
-                    alert('Gagal update status pembayaran.');
-                });
+                alert('Pembayaran berhasil! Silakan tunggu konfirmasi dari sistem.');
+                window.location.href = "{{ route('checkout.success') }}";
             },
             onPending: function(result) {
                 alert('Pembayaran pending, silakan cek status pesanan Anda.');
@@ -173,4 +157,5 @@
         });
     };
 </script>
+
 @endsection
