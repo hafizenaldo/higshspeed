@@ -24,13 +24,14 @@ class MidtransWebhookController extends Controller
             $serverKey
         );
 
-        if ($signatureKey !== $hashed) {
+        if ($request->signature_key !== $hashed) {
             Log::warning('Signature tidak valid');
             return response(['message' => 'Invalid signature'], 403);
         }
 
+        $order_id = explode('-', $data['order_id']);
         // Temukan pemesanan berdasarkan order_id
-        $pemesanan = Pemesanan::where('no_transaksi', $data['order_id'])->first();
+        $pemesanan = Pemesanan::where('id', $order_id[1])->first();
 
         if (!$pemesanan) {
             Log::warning('Pemesanan tidak ditemukan');
@@ -41,7 +42,7 @@ class MidtransWebhookController extends Controller
         $transactionStatus = $data['transaction_status'];
 
         if ($transactionStatus == 'settlement') {
-            $pemesanan->status_pembayaran = 'success';
+            $pemesanan->status_pembayaran = 'paid';
         } elseif ($transactionStatus == 'pending') {
             $pemesanan->status_pembayaran = 'pending';
         } elseif ($transactionStatus == 'expire') {

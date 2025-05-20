@@ -12,8 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PemesananController;
-
-
+use App\Http\Controllers\MidtransWebhookController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -73,6 +73,12 @@ use App\Http\Controllers\PemesananController;
 
 
     Route::get('/riwayat-pemesanan', [CheckoutController::class, 'riwayat'])->name('pemesanan.riwayat');
+
+    //webhook
+    Route::post('/midtrans/webhook', [MidtransWebhookController::class, 'handle'])->withoutMiddleware(VerifyCsrfToken::class);
+
+    
+
 
 
 

@@ -64,9 +64,10 @@
                             <div class="flex-c-m h-full p-lr-19">
                                 @auth
                                     <div class="flex items-center">
-                                        <a href="{{ route('profile.show') }}">
-                                            <img src="{{ asset('login/images/account.png') }}" alt="Profile" class="rounded-full" width="30" height="30" style="object-fit: cover;">
+                                        <a href="{{ route('profile.show') }}" style="color: #dc2626 !important; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                                            {{ Auth::user()->name }}
                                         </a>
+
                                     </div>
                                 @else
                                     <a href="{{ route('login') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
@@ -75,7 +76,6 @@
                                 @endauth
                             </div>
                         </div>
-
             </nav>
         </div>
     </div>
