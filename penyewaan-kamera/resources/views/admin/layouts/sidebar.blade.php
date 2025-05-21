@@ -70,7 +70,12 @@
             </a>
         </li>
 
-
+        <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+            <a href="{{ route('pemesanan.index') }}" class='sidebar-link'>
+                <i class="bi bi-card-list"></i>
+                <span>Pemesanan</span>
+            </a>
+        </li>
 
 
         {{-- <li

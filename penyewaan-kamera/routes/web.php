@@ -14,6 +14,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\MidtransWebhookController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\Admin\PemesananController as AdminPemesananController;
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
 // Route::get('/', function () {
@@ -77,19 +78,23 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
     //webhook
     Route::post('/midtrans/webhook', [MidtransWebhookController::class, 'handle'])->withoutMiddleware(VerifyCsrfToken::class);
 
-    
 
 
 
 
 
 
-    // ✅ Group route untuk bagian admin
-    Route::prefix('admin')->group(function () {
+
+   Route::prefix('admin')->middleware(['auth'])->group(function () {
     // ✅ Dashboard admin
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     // ✅ CRUD Produk (hanya index, bisa ditambah lainnya kalau perlu)
     Route::resource('produk', ProdukController::class);
+
     // ✅ CRUD Kategori (lengkap)
     Route::resource('kategori', KategoriController::class);
+
+    // ✅ CRUD Pemesanan (khusus admin)
+    Route::resource('pemesanan', AdminPemesananController::class);
 });
