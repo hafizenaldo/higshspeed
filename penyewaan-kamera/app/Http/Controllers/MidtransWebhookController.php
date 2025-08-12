@@ -12,13 +12,13 @@ class MidtransWebhookController extends Controller
 {
     public function handle(Request $request)
     {
-        $serverKey = config('midtrans.serverKey'); // ambil dari config atau .env
+        $serverKey = config('midtrans.serverKey'); // ✅ Ambil dari config/.env
         $json = $request->getContent();
-        $signatureKey = $request->header('X-Signature'); // atau gunakan $request->signature_key
+        $signatureKey = $request->header('X-Signature');
 
         $data = json_decode($json, true);
 
-        // ✏️ Validasi signature Midtrans (keamanan)
+        // ✅ Validasi signature Midtrans
         $hashed = hash('sha512',
             $data['order_id'] .
             $data['status_code'] .
@@ -31,23 +31,37 @@ class MidtransWebhookController extends Controller
             return response(['message' => 'Invalid signature'], 403);
         }
 
-        // ✏️ Ambil ID dari order_id Midtrans (misal: ORDER-1)
+        // ✅ Ambil ID dari order_id Midtrans (misal: ORDER-1 → ID = 1)
         $order_id = explode('-', $data['order_id']);
-        $pemesanan = Pemesanan::where('id', $order_id[1])->first();
+
+        // ✅ Pastikan relasi "detailpemesanans.produk" sesuai Model
+        $pemesanan = Pemesanan::with('detailpemesanans.produk')
+            ->where('id', $order_id[1])
+            ->first();
 
         if (!$pemesanan) {
             Log::warning('❌ Pemesanan tidak ditemukan');
             return response(['message' => 'Pemesanan tidak ditemukan'], 404);
         }
 
-        // ✏️ Update status pembayaran
+        // ✅ Update status pembayaran
         $transactionStatus = $data['transaction_status'];
 
         if ($transactionStatus == 'settlement') {
             $pemesanan->status_pembayaran = 'paid';
-            $pemesanan->save(); // ✅ Simpan dulu baru kirim email
+            $pemesanan->save();
 
-            // ✅ Kirim email invoice ke pelanggan
+            // ✅ Kurangi stok produk di tabel "produks"
+            foreach ($pemesanan->detailpemesanans as $detail) {
+                if ($detail->produk) {
+                    // 🔹 Kolom "stok" sudah sesuai dengan tabel produks
+                    $detail->produk->stok -= $detail->jumlah_item; // jumlah_item harus ada di tabel detail_pemesanans
+                    $detail->produk->save();
+                    Log::info("✅ Stok produk {$detail->produk->nama_produk} dikurangi {$detail->jumlah_item}"); // 🔹 pakai "nama_produk" sesuai tabel
+                }
+            }
+
+            // ✅ Kirim email invoice
             try {
                 if ($pemesanan->user && $pemesanan->user->email) {
                     Mail::to($pemesanan->user->email)->send(new InvoiceMail($pemesanan));
@@ -73,7 +87,7 @@ class MidtransWebhookController extends Controller
             $pemesanan->save();
         }
 
-        // ✅ Log webhook
+        // ✅ Log webhook untuk debugging
         Log::info('✅ Webhook diterima dan status diperbarui', $data);
 
         return response()->json(['message' => 'Success']);
