@@ -39,4 +39,5 @@ class DetailPemesanan extends Model
     {
         return $this->belongsTo(Produk::class, 'produks_id');
     }
+    
 }

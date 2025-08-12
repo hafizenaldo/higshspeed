@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-4">
-    <h2 class="mb-4 text-primary fw-bold">Manajemen Pemesanan</h2>
+    <h2 class="mb-4 text-primary fw-bold">Data Pemesanan</h2>
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

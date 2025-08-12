@@ -9,26 +9,26 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
+                        <a href="{{ url('/produk/kategori/9') }}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Drone
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
+                        <a href="{{ url('/produk/kategori/8') }}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Speedlite
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
+                        <a href="{{ url('/produk/kategori/6') }}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Lighting Video
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
+                        <a href="{{ url('/produk/kategori/5') }}" class="stext-107 cl7 hov-cl1 trans-04">
+                            Lighting Foto
                         </a>
                     </li>
                 </ul>
