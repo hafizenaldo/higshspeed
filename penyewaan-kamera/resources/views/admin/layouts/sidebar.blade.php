@@ -65,24 +65,37 @@
 
         <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}" class='sidebar-link'>
-                <i class="bi bi-card-list"></i>
+                {{-- 🔹 Ganti icon kategori --}}
+                <i class="bi bi-tags"></i>
                 <span>Kategori</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+
+        <li class="sidebar-item {{ request()->is('pemesanan*') ? 'active' : '' }}">
             <a href="{{ route('pemesanan.index') }}" class='sidebar-link'>
-                <i class="bi bi-card-list"></i>
+                {{-- 🔹 Ganti icon jadi keranjang dengan tanda centang --}}
+                <i class="bi bi-cart-check"></i>
                 <span>Pemesanan</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
+
+        <li class="sidebar-item {{ request()->is('keuangan*') ? 'active' : '' }}">
             <a href="{{ route('keuangan.index') }}" class='sidebar-link'>
-                <i class="bi bi-card-list"></i>
+                {{-- 🔹 Ganti icon keuangan --}}
+                <i class="bi bi-cash-stack"></i>
                 <span>Keuangan</span>
             </a>
         </li>
+
+        <li class="sidebar-item">
+            <a href="{{ route('pelanggan.index') }}" class='sidebar-link'>
+                <i class="bi bi-people-fill"></i>
+                <span>Akun Pelanggan</span>
+            </a>
+        </li>
+
 
 
         {{-- <li

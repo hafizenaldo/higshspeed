@@ -16,6 +16,7 @@ use App\Http\Controllers\MidtransWebhookController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Admin\PemesananController as AdminPemesananController;
 use App\Http\Controllers\Admin\KeuanganController as AdminKeuanganController;
+use App\Http\Controllers\Admin\PelangganController as AdminPelangganController;
 
 
 // ✅ Halaman utama diarahkan ke halaman dashboard
@@ -95,7 +96,8 @@ use App\Http\Controllers\Admin\KeuanganController as AdminKeuanganController;
     Route::resource('pemesanan', AdminPemesananController::class);
         // ✅ CRUD Keuangan
     Route::resource('keuangan', AdminKeuanganController::class);
+    // ✅ CRUD Pelanggan
+    Route::resource('pelanggan', AdminPelangganController::class);
 
 
-    
 });
