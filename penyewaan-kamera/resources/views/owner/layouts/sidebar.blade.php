@@ -56,7 +56,7 @@
         </li>
 
         <li class="sidebar-item {{ request()->is('produk*') ? 'active' : '' }}">
-            <a href="{{ route('produk.index') }}" class='sidebar-link'>
+            {{-- <a href="{{ route('produk.index') }}" class='sidebar-link'> --}}
                 <i class="bi bi-camera"></i>
                 <span>Produk</span>
             </a>
@@ -64,21 +64,21 @@
 
 
         <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
-            <a href="{{ route('kategori.index') }}" class='sidebar-link'>
+            {{-- <a href="{{ route('kategori.index') }}" class='sidebar-link'> --}}
                 <i class="bi bi-card-list"></i>
                 <span>Kategori</span>
             </a>
         </li>
 
         <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
-            <a href="{{ route('pemesanan.index') }}" class='sidebar-link'>
+            {{-- <a href="{{ route('pemesanan.index') }}" class='sidebar-link'> --}}
                 <i class="bi bi-card-list"></i>
                 <span>Pemesanan</span>
             </a>
         </li>
 
         <li class="sidebar-item {{ request()->is('kategori*') ? 'active' : '' }}">
-            <a href="{{ route('keuangan.index') }}" class='sidebar-link'>
+            {{-- <a href="{{ route('keuangan.index') }}" class='sidebar-link'> --}}
                 <i class="bi bi-card-list"></i>
                 <span>Keuangan</span>
             </a>

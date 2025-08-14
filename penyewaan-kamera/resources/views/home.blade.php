@@ -1285,95 +1285,63 @@
 		<div class="container">
 			<div class="p-b-66">
 
-			</div>
+
 
 			<div class="row">
 				<div class="col-sm-6 col-md-4 p-b-40">
-					<div class="blog-item">
-						<div class="hov-img0">
-							{{-- <a href="blog-detail.html"> --}}
-								<img src="images/poster.png" alt="IMG-BLOG">
-							</a>
-						</div>
+                    <div class="blog-item">
+                        <div class="hov-img0" style="overflow: hidden;">
+                            <img src="images/poster.png" alt="IMG-BLOG" style="width: 110%; max-width: none; display: block; margin: 0 auto;">
+                        </div>
 
-						<div class="p-t-15">
-							<div class="stext-107 flex-w p-b-14">
+                        <div class="p-t-15">
+                            <div class="stext-107 flex-w p-b-14">
+                            </div>
 
-							</div>
+                            <h4 class="p-b-12">
+                            </h4>
+                        </div>
+                    </div>
+                </div>
 
-							<h4 class="p-b-12">
-									Tips Memilih Kamera Sesuai Kebutuhan
-								</a>
-							</h4>
-						</div>
-					</div>
-				</div>
 
 				<div class="col-sm-6 col-md-4 p-b-40">
-					<div class="blog-item">
-						<div class="hov-img0">
-							{{-- <a href="blog-detail.html"> --}}
-								<img src="images/poster2.png" alt="IMG-BLOG">
-							</a>
-						</div>
+                    <div class="blog-item">
+                        <div class="hov-img0" style="overflow: hidden;">
+                            <img src="images/promo.png" alt="IMG-BLOG" style="width: 110%; max-width: none; display: block; margin: 0 auto;">
+                        </div>
 
-						<div class="p-t-15">
-							<div class="stext-107 flex-w p-b-14">
+                        <div class="p-t-15">
+                            <div class="stext-107 flex-w p-b-14">
+                            </div>
 
-							</div>
+                            <h4 class="p-b-12">
+                            </h4>
+                        </div>
+                    </div>
+                </div>
 
-							<h4 class="p-b-12">
-								<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-									Hasil Kamera HIGHSPEED
-								</a>
-							</h4>
-						</div>
-					</div>
-				</div>
 
 				<div class="col-sm-6 col-md-4 p-b-40">
-					<div class="blog-item">
-						<div class="hov-img0">
-							<a href="blog-detail.html">
-								<img src="images/poster3.png" alt="IMG-BLOG">
-							</a>
-						</div>
+                    <div class="blog-item">
+                        <div class="hov-img0" style="overflow: hidden;">
+                            <img src="images/poster3.png" alt="IMG-BLOG" style="width: 110%; max-width: none; display: block; margin: 0 auto;">
+                        </div>
 
-						<div class="p-t-15">
-							<div class="stext-107 flex-w p-b-14">
-								<span class="m-r-3">
-									<span class="cl4">
-										By
-									</span>
+                        <div class="p-t-15">
+                            <h4 class="p-b-12">
+                                <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                                    5 Winter-to-Spring Fashion Trends to Try Now
+                                </a>
+                            </h4>
 
-									<span class="cl5">
-										Nancy Ward
-									</span>
-								</span>
+                            <p class="stext-108 cl6">
+                                Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-								<span>
-									<span class="cl4">
-										on
-									</span>
-
-									<span class="cl5">
-										July 2, 2017
-									</span>
-								</span>
-							</div>
-
-							<h4 class="p-b-12">
-								<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-									5 Winter-to-Spring Fashion Trends to Try Now
-								</a>
-							</h4>
-
-							<p class="stext-108 cl6">
-								Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
-							</p>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>

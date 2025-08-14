@@ -45,7 +45,7 @@ class MidtransWebhookController extends Controller
         }
 
         // ✅ Update status pembayaran
-        $transactionStatus = $data['transaction_status']; 
+        $transactionStatus = $data['transaction_status'];
 
         if ($transactionStatus == 'settlement') {
             $pemesanan->status_pembayaran = 'paid';
